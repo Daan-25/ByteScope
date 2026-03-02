@@ -290,14 +290,13 @@ static void draw_entropy_chart(AppState& s) {
         ImPlot::SetupAxes("Block", "Entropy", ImPlotAxisFlags_AutoFit, ImPlotAxisFlags_AutoFit);
 
         // Build xs/ys arrays
-        static std::vector<float> xs, ys;
-        xs.resize(metrics.size());
-        ys.resize(metrics.size());
+        s.chart_xs.resize(metrics.size());
+        s.chart_ys.resize(metrics.size());
         for (size_t i = 0; i < metrics.size(); ++i) {
-            xs[i] = float(i);
-            ys[i] = metrics[i].entropy;
+            s.chart_xs[i] = float(i);
+            s.chart_ys[i] = metrics[i].entropy;
         }
-        ImPlot::PlotLine("Entropy", xs.data(), ys.data(), (int)metrics.size());
+        ImPlot::PlotLine("Entropy", s.chart_xs.data(), s.chart_ys.data(), (int)metrics.size());
 
         // Highlight selected block
         if (s.selected_block >= 0 && s.selected_block < (int)metrics.size()) {

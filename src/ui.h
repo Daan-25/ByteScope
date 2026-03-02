@@ -47,6 +47,10 @@ struct AppState {
     DiffSummary          diff_summary;
     std::vector<ChangedBlock> top_changed;
 
+    // Entropy chart temp data
+    std::vector<float> chart_xs;
+    std::vector<float> chart_ys;
+
     // Export path
     char export_path[512] = "diff_export.txt";
 

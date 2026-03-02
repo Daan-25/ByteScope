@@ -43,7 +43,7 @@ private:
     struct SlotState {
         std::atomic<bool>  busy{false};
         std::atomic<float> progress{0.f};
-        std::mutex         mtx;
+        mutable std::mutex mtx;
         bool               ready = false;
         FileData           result;
         std::string        error_msg;

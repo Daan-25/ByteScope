@@ -45,7 +45,7 @@ bool FileLoader::loading(int slot) const {
 
 std::string FileLoader::error(int slot) const {
     if (slot < 0 || slot > 1) return {};
-    // reading error_msg without lock is technically racy but acceptable here
+    std::lock_guard<std::mutex> lk(m_slots[slot].mtx);
     return m_slots[slot].error_msg;
 }
 
